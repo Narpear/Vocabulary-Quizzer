@@ -1,37 +1,88 @@
 {
     "question": [
-      "Q1. What Indian city is the capital of two states?",
-      "Q2. Which city is the capital of India?",
-      "Q3. Smallest State of India?",
-      "Q4. Where is Taj Mahal Located?"
+        "imperturbable",
+        "officious",
+        "barrage",
+        "morbid",
+        "recondite",
+        "ingest",
+        "expiation",
+        "palpitate",
+        "accretion",
+        "abut"
     ],
     "answer": [
-      1,
-      2,
-      3,
-      2
+        2,
+        1,
+        4,
+        1,
+        2,
+        4,
+        2,
+        2,
+        4,
+        1
     ],
     "options": [
-  
-      ["Chandigarh",
-        "Kolkata",
-        "Delhi",
-        "Banglore"
-      ],
-      ["Jaipur",
-        "Delhi",
-        "Chennai",
-        "Mumbai"
-      ],
-      ["Rajasthan",
-        "Punjab",
-        "Goa",
-        "Bihar"
-      ],
-      ["Lucknow",
-        "Agra",
-        "Bhopal",
-        "Delhi"
-      ]
+        [
+            "intractable not willing to yield or comply stubborn",
+            "calm not capable of being excited",
+            "give greatly needed support",
+            "obscene"
+        ],
+        [
+            "too eager or ready to help offer advice",
+            "violent cruel man",
+            "stinking",
+            "shortage"
+        ],
+        [
+            "odious (of crime)",
+            "obstruct/frustrate",
+            "making dear or liked",
+            "artificial obstacle built across a river"
+        ],
+        [
+            "diseased unhealthy (e.g.. about ideas)",
+            "injurious speak ill of smb tell lie",
+            "belligerent pugnacious warlike",
+            "touching neighboring near"
+        ],
+        [
+            "beginning",
+            "little known abstruse",
+            "to be thrifty to set limits",
+            "a beggar"
+        ],
+        [
+            "distribute (esp. ideas)",
+            "make or become silent",
+            "of the power of forming a solution",
+            "take in by swallowing"
+        ],
+        [
+            "directing the mind in a certain direction",
+            "ending expiring",
+            "press lose shape subdue overwhelm",
+            "easily controlled or guided"
+        ],
+        [
+            "not new",
+            "tremble beat rapidly and irregularly",
+            "cheerful confident optimistic",
+            "scarcity a lacking of"
+        ],
+        [
+            "greenish-blue precious stone",
+            "large piece of cloth",
+            "burst out suddenly/talk ardently",
+            "the growing of separate things into one"
+        ],
+        [
+            "border on",
+            "refuse to accept/cause dislike",
+            "marry give one's support to",
+            "end the existence of/wipe or put out"
+        ]
     ]
-  }
+}
