@@ -106,7 +106,7 @@ class Quiz:
 		# checks if the q_no size is equal to the data size
 		if self.q_no==self.data_size:
 			
-			# if it is correct then it displays the score
+			# Displays the score
 			self.display_result()
 			
 			# destroys the GUI
@@ -216,7 +216,7 @@ second=StringVar()
   
 # setting the default value as 0
 hour.set("00")
-minute.set("05")
+minute.set("03")
 second.set("00")
   
 # Use of Entry class to take input from the user
@@ -262,6 +262,8 @@ def submit():
         # when temp value = 0; then a messagebox pops up with a message:"Time's up"
         if (temp == 0):
             mb.showinfo("Time Countdown", "Time's up ")
+ 
+            gui.destroy()
          
         # after every one sec the value of temp will be decremented
         # by one
