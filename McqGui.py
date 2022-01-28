@@ -1,37 +1,55 @@
-# Python program to create a simple GUI
-# Simple Quiz using Tkinter
-
 #import everything from tkinter
 from tkinter import *
-
-# and import messagebox as mb from tkinter
 from tkinter import messagebox as mb
 
-#import json to use json file for data
+# data1.json serves as the source of data. To extract this, we import json file.
 import json
+
+# json is JavaScript Object Notation
+from textwrap import wrap
+import requests, random
+
+import json
+
+url =  'https://www.randomlists.com/data/vocabulary-words.json'
+r = requests.get(url)
+
+questions = []
+answers = []
+options=[]
+
+
+for i in range (0,10):
+    words_and_meanings =  random.choices(r.json()['data'], k=4)
+    x = random.randint(1,4)
+    questions.append(words_and_meanings[x-1]["name"])
+    answers.append(x)
+    temp_options = [words_and_meanings[0]["detail"], words_and_meanings[1]["detail"], words_and_meanings[2]["detail"], words_and_meanings[3]["detail"]]
+    options.append(temp_options)
+
+lists = ['question', 'answer', 'options']
+
+data = {"question": questions, "answer": answers, "options": options }
+with open('data1.json', 'w') as database:
+    json.dump(data, database, indent=4)
+
+
 
 #class to define the components of the GUI
 class Quiz:
-	# This is the first method which is called when a
-	# new object of the class is initialized. This method
-	# sets the question count to 0. and initialize all the
-	# other methoods to display the content and make all the
-	# functionalities available
 	def __init__(self):
 		
-		# set question number to 0
+		# setting question number to 0
 		self.q_no=0
 		
-		# assigns ques to the display_question function to update later.
+		# assigning question to the display_question function to be updated later.
 		self.display_title()
 		self.display_question()
 		
-		# opt_selected holds an integer value which is used for
-		# selected option in a question.
+		# opt_selected holds an integer value which is used for the selected option in a question.
 		self.opt_selected=IntVar()
 		
-		# displaying radio button for the current question and used to
-		# display options for the current question
+		# displaying radio button for the current question and used to display options for the current question
 		self.opts=self.radio_buttons()
 		
 		# display options for the current question
@@ -47,38 +65,31 @@ class Quiz:
 		self.correct=0
 
 
-	# This method is used to display the result
-	# It counts the number of correct and wrong answers
-	# and then display them at the end as a message Box
+	# This fucntion counts correct and wrong answers and displays the result at the end in a messagebox.
 	def display_result(self):
 		
-		# calculates the wrong count
+		# calculating percentage of wrong answers
 		wrong_count = self.data_size - self.correct
 		correct = f"Correct: {self.correct}"
 		wrong = f"Wrong: {wrong_count}"
 		
-		# calcultaes the percentage of correct answers
+		# calculating percentage of correcr answers
 		score = int(self.correct / self.data_size * 100)
 		result = f"Score: {score}%"
 		
-		# Shows a message box to display the result
+		# displaying the result in a messagebox.
 		mb.showinfo("Result", f"{result}\n{correct}\n{wrong}")
 
 
-	# This method checks the Answer after we click on Next.
+	# Checking the chosen answer when "next" button is clicked.
 	def check_ans(self, q_no):
 		
-		# checks for if the selected option is correct
+		# checking if the selected option is correct
 		if self.opt_selected.get() == answer[q_no]:
 			# if the option is correct it return true
 			return True
 
-	# This method is used to check the answer of the
-	# current question by calling the check_ans and question no.
-	# if the question is correct it increases the count by 1
-	# and then increase the question number by 1. If it is last
-	# question then it calls display result to show the message box.
-	# otherwise shows next question.
+	# Checking the answer, increasing points, and displaying messagebox with the result.
 	def next_btn(self):
 		
 		# Check if the answer is correct
@@ -104,13 +115,7 @@ class Quiz:
 			self.display_options()
 
 
-	# This method shows the two buttons on the screen.
-	# The first one is the next_button which moves to next question
-	# It has properties like what text it shows the functionality,
-	# size, color, and property of text displayed on button. Then it
-	# mentions where to place the button on the screen. The second
-	# button is the exit button which is used to close the GUI without
-	# completing the quiz.
+	# Making the "next" and "quit" buttons
 	def buttons(self):
 		
 		# The first button is the Next button to move to the
@@ -129,24 +134,20 @@ class Quiz:
 		quit_button.place(x=700,y=50)
 
 
-	# This method deselect the radio button on the screen
-	# Then it is used to display the options available for the current
-	# question which we obtain through the question number and Updates
-	# each of the options for the current question of the radio button.
+	# Display and select the radio buttons
 	def display_options(self):
 		val=0
 		
 		# deselecting the options
 		self.opt_selected.set(0)
 		
-		# looping over the options to be displayed for the
-		# text of the radio buttons.
+		# looping the options list to display on the screen
 		for option in options[self.q_no]:
 			self.opts[val]['text']=option
 			val+=1
 
 
-	# This method shows the current Question on the screen
+	# Displaying the current question on the screen
 	def display_question(self):
 		
 		# setting the Question properties
@@ -157,21 +158,18 @@ class Quiz:
 		q_no.place(x=70, y=100)
 
 
-	# This method is used to Display Title
+	# Displaying the title
 	def display_title(self):
 		
 		# The title to be shown
 		title = Label(gui, text="Vocabulary Quizzer",
-		width=50, bg="green",fg="white", font=("ariel", 20, "bold"))
+		width=50, bg="pink",fg="white", font=("ariel", 20, "bold"))
 		
 		# place of the title
 		title.place(x=0, y=2)
 
 
-	# This method shows the radio buttons to select the Question
-	# on the screen at the specified position. It also returns a
-	# lsit of radio button which are later used to add the options to
-	# them.
+	# Making the radio buttons
 	def radio_buttons(self):
 		
 		# initialize the list with an empty list of options
@@ -199,28 +197,28 @@ class Quiz:
 		# return the radio buttons
 		return q_list
 
-# Create a GUI Window
+# Creating a GUI Window
 gui = Tk()
 
-# set the size of the GUI Window
+# setting the size of the GUI Window
 gui.geometry("800x450")
 
-# set the title of the Window
+# setting the title of the GUI Window
 gui.title("Vocabulary Quizzer")
 
-# get the data from the json file
-with open('data.json') as f:
+# loading the data from the json file
+with open('data1.json') as f:
 	data = json.load(f)
 
-# set the question, options, and answer
+# setting the questions, options, and answers
 question = (data['question'])
 options = (data['options'])
 answer = (data[ 'answer'])
 
-# create an object of the Quiz Class.
+# an object of Quiz class is created
 quiz = Quiz()
 
-# Start the GUI
+# Run the GUI
 gui.mainloop()
 
-# END OF THE PROGRAM
+
