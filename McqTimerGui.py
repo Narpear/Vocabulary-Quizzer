@@ -2,8 +2,10 @@
 from tkinter import *
 from tkinter import messagebox as mb
 
+
 # data1.json serves as the source of data. To extract this, we import json file.
 import json
+import time 
 
 # json is JavaScript Object Notation
 from textwrap import wrap
@@ -34,10 +36,10 @@ with open('data1.json', 'w') as database:
     json.dump(data, database, indent=4)
 
 
-
 #class to define the components of the GUI
 class Quiz:
 	def __init__(self):
+		
 		
 		# setting question number to 0
 		self.q_no=0
@@ -63,7 +65,7 @@ class Quiz:
 		
 		# keep a counter of correct answers
 		self.correct=0
-
+		
 
 	# This fucntion counts correct and wrong answers and displays the result at the end in a messagebox.
 	def display_result(self):
@@ -121,14 +123,14 @@ class Quiz:
 		# The first button is the Next button to move to the
 		# next Question
 		next_button = Button(gui, text="Next",command=self.next_btn,
-		width=10,bg="blue",fg="white",font=("ariel",16,"bold"))
+		width=10,bg="white",fg="black",font=("ariel",16,"bold"))
 		
 		# palcing the button on the screen
 		next_button.place(x=350,y=380)
 		
 		# This is the second button which is used to Quit the GUI
 		quit_button = Button(gui, text="Quit", command=gui.destroy,
-		width=5,bg="black", fg="white",font=("ariel",16," bold"))
+		width=5,bg="white", fg="black",font=("ariel",16," bold"))
 		
 		# placing the Quit button on the screen
 		quit_button.place(x=700,y=50)
@@ -197,9 +199,79 @@ class Quiz:
 		# return the radio buttons
 		return q_list
 
+
+
+
+
+
 # Creating a GUI Window
 gui = Tk()
 
+gui.title("Time Counter")
+  
+# Declaration of variables
+hour=StringVar()
+minute=StringVar()
+second=StringVar()
+  
+# setting the default value as 0
+hour.set("00")
+minute.set("05")
+second.set("00")
+  
+# Use of Entry class to take input from the user
+hourEntry= Entry(gui, width=3, font=("Arial",18,""),
+                 textvariable=hour)
+hourEntry.place(x=550,y=200)
+  
+minuteEntry= Entry(gui, width=3, font=("Arial",18,""),
+                   textvariable=minute)
+minuteEntry.place(x=583,y=200)
+  
+secondEntry= Entry(gui, width=3, font=("Arial",18,""),
+                   textvariable=second)
+secondEntry.place(x=613,y=200)
+  
+  
+def submit():
+    try:
+        # user input is stored in temp
+        temp = int(hour.get())*3600 + int(minute.get())*60 + int(second.get())
+    except:
+        print("Please input the right value")
+    while temp >-1:
+         
+        # divmod(firstvalue = temp//60, secondvalue = temp%60)
+        mins,secs = divmod(temp,60)
+  
+        # converting user input to hours, minutes and seconds.
+        hours=0
+        if mins >60:
+             
+            hours, mins = divmod(mins, 60)
+         
+        # using format () method to store the value up to two decimal places
+        hour.set("{0:2d}".format(hours))
+        minute.set("{0:2d}".format(mins))
+        second.set("{0:2d}".format(secs))
+  
+        # updating the GUI window after decrementing the temp value every time
+        gui.update()
+        time.sleep(1)
+  
+        # when temp value = 0; then a messagebox pops up with a message:"Time's up"
+        if (temp == 0):
+            messagebox.showinfo("Time Countdown", "Time's up ")
+         
+        # after every one sec the value of temp will be decremented
+        # by one
+        temp -= 1
+ 
+# button widget
+btn = Button(gui, text='Press to Start!', bd='5',
+             command= submit)
+btn.place(x = 540,y = 166)
+  
 # setting the size of the GUI Window
 gui.geometry("800x450")
 
@@ -220,5 +292,3 @@ quiz = Quiz()
 
 # Run the GUI
 gui.mainloop()
-
-
