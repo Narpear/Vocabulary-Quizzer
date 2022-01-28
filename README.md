@@ -7,5 +7,3 @@ There is also an additional json file that is used to store questions, answers a
 The attached file here, data1.json is just a sample file. 
 Every time McqTimerGui.py is run, the contents of data1.json changes. 
 
-This project is still under progress. 
-It will soon be integrated into a single program, or with reduced number of files. 
