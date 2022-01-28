@@ -261,7 +261,7 @@ def submit():
   
         # when temp value = 0; then a messagebox pops up with a message:"Time's up"
         if (temp == 0):
-            messagebox.showinfo("Time Countdown", "Time's up ")
+            mb.showinfo("Time Countdown", "Time's up ")
          
         # after every one sec the value of temp will be decremented
         # by one
