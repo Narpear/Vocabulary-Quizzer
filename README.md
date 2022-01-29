@@ -12,3 +12,8 @@ To run program:
 Step 1: Save all files (with same names and extensions)
 
 Step 2: Run Start.py
+
+Prerequisite modules:
+  * random
+  * requests
+  * json
