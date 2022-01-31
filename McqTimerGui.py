@@ -9,9 +9,10 @@ import time
 
 # json is JavaScript Object Notation
 from textwrap import wrap
+
+#requests is the module that is used to pull http requests from the internet. It enables the scraping. 
 import requests, random
 
-import json
 
 url =  'https://www.randomlists.com/data/vocabulary-words.json'
 r = requests.get(url)
@@ -125,7 +126,7 @@ class Quiz:
 		next_button = Button(gui, text="Next",command=self.next_btn,
 		width=10,bg="white",fg="black",font=("ariel",16,"bold"))
 		
-		# palcing the button on the screen
+		# placing the button on the screen
 		next_button.place(x=350,y=380)
 		
 		# This is the second button which is used to Quit the GUI
@@ -133,7 +134,7 @@ class Quiz:
 		width=5,bg="white", fg="black",font=("ariel",16," bold"))
 		
 		# placing the Quit button on the screen
-		quit_button.place(x=700,y=50)
+		quit_button.place(x=700,y=380)
 
 
 	# Display and select the radio buttons
@@ -222,15 +223,15 @@ second.set("00")
 # Use of Entry class to take input from the user
 hourEntry= Entry(gui, width=3, font=("Arial",18,""),
                  textvariable=hour)
-hourEntry.place(x=550,y=200)
+hourEntry.place(x=650,y=200)
   
 minuteEntry= Entry(gui, width=3, font=("Arial",18,""),
                    textvariable=minute)
-minuteEntry.place(x=583,y=200)
+minuteEntry.place(x=680,y=200)
   
 secondEntry= Entry(gui, width=3, font=("Arial",18,""),
                    textvariable=second)
-secondEntry.place(x=613,y=200)
+secondEntry.place(x=710,y=200)
   
   
 def submit():
@@ -270,9 +271,8 @@ def submit():
         temp -= 1
  
 # button widget
-btn = Button(gui, text='Press to Start!', bd='5',
-             command= submit)
-btn.place(x = 540,y = 166)
+btn = Button(gui, text='Press to Start!', bd='5', command= submit)
+btn.place(x = 650 ,y = 150)
   
 # setting the size of the GUI Window
 gui.geometry("800x450")
