@@ -18,4 +18,4 @@ Prerequisite modules:
   * requests
   * json
   * pillow
-  * tkinter (but its in-built)
+  * tkinter (but it's in-built)
