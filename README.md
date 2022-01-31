@@ -17,3 +17,5 @@ Prerequisite modules:
   * random
   * requests
   * json
+  * pillow
+  * tkinter (but its in-built)
