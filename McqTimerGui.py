@@ -11,10 +11,12 @@ import time
 from textwrap import wrap
 
 #requests is the module that is used to pull http requests from the internet. It enables the scraping. 
+#it enables us to add headers, form data, etc. from the contents of a html file. 
 import requests, random
 
 
 url =  'https://www.randomlists.com/data/vocabulary-words.json'
+#The get method is used to retrieve information from the given server using a given URL.
 r = requests.get(url)
 
 questions = []
@@ -23,16 +25,31 @@ options=[]
 
 
 for i in range (0,10):
+
+	#make a list of the sets of 4 random words and their meanings scraped from the website.
+	#this list contains 4 dictionaries, each of which has a "name" (the word) and a "detail" (the meaning)
     words_and_meanings =  random.choices(r.json()['data'], k=4)
+
+	#select a random number from 1-4. This is the number of the dictionary that will be the question and answer
     x = random.randint(1,4)
+
+	#extract the word that acts as the question, and append it to the list of questions.
     questions.append(words_and_meanings[x-1]["name"])
+
+	#append the answer as the number of the dictionary that is used as the question and answer
     answers.append(x)
+
+    #make a list of options for the given word
     temp_options = [words_and_meanings[0]["detail"], words_and_meanings[1]["detail"], words_and_meanings[2]["detail"], words_and_meanings[3]["detail"]]
+    
+    #append the list of options for the selected word, to the list of all options. 
     options.append(temp_options)
 
-lists = ['question', 'answer', 'options']
 
+#making a dictionary that contains all questions, answers, and options for every question.
 data = {"question": questions, "answer": answers, "options": options }
+
+#opening a .json file in write mode and dumping all data into it, so it can be extracted and used in the MCQ GUI.
 with open('data1.json', 'w') as database:
     json.dump(data, database, indent=4)
 
