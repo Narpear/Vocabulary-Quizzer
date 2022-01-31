@@ -7,7 +7,7 @@ There is also an additional json file that is used to store questions, answers a
 The attached file here, data1.json is just a sample file. 
 Every time McqTimerGui.py is run, the contents of data1.json changes. 
 
-To run program:
+To run the code:
 
    * Step 1: Save all files (with same names and extensions)
    * Step 2: After saving quizpic.jpg, copy its path in line 8 of Start.py
